@@ -1,4 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Features to implement:
+[] upgrade auth for email/password login
+[] Deploy
+[] Implement Search
+  - Search by prompt
+  - Search by prompt and date range
+  - Search by tag
+  - Search by username
+  - Search by email
+[] Implement Click on tag
+[] Implement View other profiles
+[] Implement Sort
+[] Implement Pagination
+[] Implement Filtering
+
+This is a [Next.js](https:/
+/nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
