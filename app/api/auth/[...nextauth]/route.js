@@ -1,14 +1,41 @@
 import NextAuth from "next-auth/next"; // tutorial imports from "next-auth" and not "next-auth/next", is this an issue?
-import GoogleProvider from "next-auth/providers/google"
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
 import { connectToDB } from "@utils/database";
 import User from "@models/user";
 
 const handler = NextAuth({
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    })
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_ID,
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    // }),
+    CredentialsProvider({
+      name: "Email",
+      credentials: {
+        email: { label: "Email", type: "email", placeholder: "bam@email.com" },
+        password: { label: "Password", type: "password" },
+      }
+    },
+    async (credentials, req) => {
+      // const { email, password } = credentials;
+      const { email, password } = req.json();
+
+      console.log('email :>> ', email);
+      console.log('password :>> ', password);
+      const client = await connectToDB();
+      const user = await User.findOne({ email });
+
+      if (user) {
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (isMatch) {
+          return user;
+      }
+    }
+    return null;
+  }),
+    
   ],
   callbacks: {
     async session({session}){

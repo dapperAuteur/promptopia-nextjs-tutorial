@@ -1,5 +1,7 @@
 Features to implement:
-[] upgrade auth for email/password login
+[] upgrade auth for email
+  - email/password login
+  - email passwordless auth
 [] Deploy
 [] Implement Search
   - Search by prompt
