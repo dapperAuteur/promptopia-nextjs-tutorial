@@ -12,6 +12,7 @@ Features to implement:
 [] Implement Sort
 [] Implement Pagination
 [] Implement Filtering
+[] fetch word-list from external app
 
 This is a [Next.js](https:/
 /nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
