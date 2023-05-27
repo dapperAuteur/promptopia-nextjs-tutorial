@@ -9,6 +9,7 @@ const Nav = () => {
   const {data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const [toggleDropdownWords, setToggleDropdownWords] = useState(false);
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -30,8 +31,39 @@ const Nav = () => {
         <p className="logo_text">Promptopia</p>
       </Link>
       {/* Desktop Navigation */}
-      <div className='sm:flex hidden'>
-
+      <div className='sm:flex'>
+        {/* Words Button */}
+        <div className='flex relative'>
+          <button className='black_btn flex-center' onClick={() => setToggleDropdownWords((prev) => !prev)}>
+            Word Lists
+          </button>
+          {
+          toggleDropdownWords && (
+            <div className='dropdown'>
+              <Link
+                href="/random-affixes"
+                className='dropdown_link'
+                onClick={() => setToggleDropdownWords(false)}>
+                  Random Affixes
+              </Link>
+              <Link
+                href="/random-four-letter-words"
+                className='dropdown_link'
+                onClick={() => setToggleDropdownWords(false)}>
+                  Random Four Letter Words
+              </Link>
+              <Link
+                href="/random-verbos"
+                className='dropdown_link'
+                onClick={() => {
+                  setToggleDropdownWords(false);
+                }}>
+                  Random Verbos
+                </Link>
+            </div>
+        )}
+        </div>
+        
         {
           session?.user ? (
             <div className='flex gap-3 md:gap-5'>
@@ -65,7 +97,7 @@ const Nav = () => {
                         key={provider.name}
                         onClick={() => signIn(provider.id)}
                         className='black_btn'>
-                        Sign In
+                        {provider.name} Sign In
                       </button>
                     ))
               }

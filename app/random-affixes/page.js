@@ -78,7 +78,7 @@ export default function RandomAffix() {
 
   return (
     <div>
-        <title>2 Random Affixes</title>
+      <title>2 Random Affixes</title>
       <article>
         <div>Morphemes: {affix0.morpheme} | Types: {affix0Type}
         {/* need to map over examples and meanings */}
