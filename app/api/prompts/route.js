@@ -5,6 +5,7 @@ export const GET = async (request) => {
   try {
     await connectToDB();
 
+    // const prompts = await Prompt.find({}).populate('creator').exec();
     const prompts = await Prompt.find({}).populate('creator');
 
     // console.log('prompts :>> ', prompts);
