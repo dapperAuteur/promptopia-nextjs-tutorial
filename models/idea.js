@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-const IdeaSchema = Schema({
+const IdeaSchema = new Schema({
   creator: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -21,7 +21,8 @@ const IdeaSchema = Schema({
   },
   ideaStatus: {
     type: String,
-    enum: ['Open','idea','task','mini-project','project','Closed'],
+    enum: ['Idea','Task','Mini-Project','Project','Closed'],
+    default: 'Idea'
   },
   tags: [{
     type: Schema.Types.ObjectId,
