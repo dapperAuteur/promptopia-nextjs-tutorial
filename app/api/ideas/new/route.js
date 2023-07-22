@@ -2,13 +2,13 @@ import Idea from "@models/idea";
 import { connectToDB } from "@utils/database";
 
 export const POST = async(request) => {
-  const {userId, idea, tag} = await request.json();
+  const idea = await request.json();
   try {
     // Connect to database
     await connectToDB();
   
     const newIdea = new Idea({
-      creator: userId,
+      creator: idea.creator,
       title: idea.title,
       description: idea.description,
       tag: idea.tag

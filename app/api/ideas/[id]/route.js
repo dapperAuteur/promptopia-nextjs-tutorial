@@ -5,17 +5,18 @@ export const GET = async (request, {params}) => {
   try {
     await connectToDB();
 
-    console.log('params.id :>> ', params.id);
+    // console.log('params.id :>> ', params.id);
     const idea = await Idea.findById(params.id).populate("creator");
     
 
-    console.log('idea :>> ', idea);
+    // console.log('idea :>> ', idea);
 
     if (!idea) {
       return new Response("Idea NOT Found.", { status: 404 });  
     }
     return new Response(JSON.stringify(idea), { status: 200 })
   } catch (err) {
+    console.log('GET Idea err :>> ', err);
     return new Response("Internal Server Error.", { status: 500 });
   }
 }
@@ -35,19 +36,20 @@ export const PATCH = async (request, { params }) => {
       });
     }
 
-    console.log('0 existingIdea :>> ', existingIdea);
+    // console.log('0 existingIdea :>> ', existingIdea);
     // Update the idea with new data
     const updatedIdea = Object.assign(existingIdea, {
       ...idea
     });
 
 
-    console.log('1 updatedIdea :>> ', updatedIdea);
+    // console.log('1 updatedIdea :>> ', updatedIdea);
 
     await updatedIdea.save();
     return new Response(JSON.stringify(updatedIdea), { status: 200 });
 
   } catch (err) {
+    console.log('Updating Idea err :>> ', err);
     return new Response("Error Updating Idea", {
       status: 500
     });

@@ -40,6 +40,7 @@ const ProjectSchema = Schema({
   },
   dueDate: {
     type: Date
+    // default 90 days from today
   },
   createdAt: Date, // default value will be set by mongoose when document created
   updatedAt: Date
