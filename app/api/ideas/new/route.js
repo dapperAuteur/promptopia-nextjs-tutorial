@@ -11,9 +11,6 @@ export const POST = async(request) => {
       creator: userId,
       title: idea.title,
       description: idea.description,
-      budget: idea.budget,
-      ideaStatus: idea.ideaStatus,
-      points: idea.points,
       tag: idea.tag
     });
 

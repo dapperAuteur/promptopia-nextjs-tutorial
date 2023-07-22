@@ -21,7 +21,8 @@ const TaskSchema = Schema({
   },
   taskStatus: {
     type: String,
-    enum: ['open','scheduled','in-progress','done']
+    enum: ['open','scheduled','in-progress','done'],
+    default: "open",
   },
   tags: [{
     type: Schema.Types.ObjectId,
@@ -30,14 +31,6 @@ const TaskSchema = Schema({
   ideas: [{
     type: Schema.Types.ObjectId,
     ref:'Ideas'
-  }],
-  miniProjects: [{
-    type: Schema.Types.ObjectId,
-    ref:'MiniProjects'
-  }],
-  projects: [{
-    type: Schema.Types.ObjectId,
-    ref:'Projects'
   }],
   points: {
     type: Number,

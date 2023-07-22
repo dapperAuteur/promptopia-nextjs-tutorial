@@ -30,10 +30,6 @@ const ProjectSchema = Schema({
     type: Schema.Types.ObjectId,
     ref: 'Tasks'
   }],
-  miniProjects: [{
-    type: Schema.Types.ObjectId,
-    ref:'MiniProjects'
-  }],
   points: {
     type: Number,
     required: [true, 'Points is required. The default is 1.'],
