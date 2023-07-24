@@ -5,7 +5,7 @@ export const GET = async (request, {params}) => {
   try {
     await connectToDB();
 
-    console.log('params.id :>> ', params.id);
+    // console.log('params.id :>> ', params.id);
     const task = await Task.findById(params.id).populate("creator");
     
 
@@ -41,7 +41,7 @@ export const PATCH = async (request, { params }) => {
     });
 
 
-    console.log('1 updatedTask :>> ', updatedTask);
+    // console.log('1 updatedTask :>> ', updatedTask);
 
     await updatedTask.save();
     return new Response(JSON.stringify(updatedTask), { status: 200 });

@@ -27,7 +27,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPrompts = async () => {
-      const response = await fetch("/api/prompt");
+      const response = await fetch("/api/prompts");
       const data = await response.json();
   
       setAllPrompts(data);
