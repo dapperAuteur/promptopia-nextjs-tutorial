@@ -31,7 +31,7 @@ const MyProfile = () => {
 
     if (hasConfirmed) {
       try {
-        await fetch(`/api/prompt/${prompt._id.toString()}`, {
+        await fetch(`/api/prompts/${prompt._id.toString()}`, {
           method: "DELETE",
         })
         const filteredPrompts = profilePrompts.filter((p) => p._id !== prompt._id);

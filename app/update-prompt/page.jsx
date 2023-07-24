@@ -1,13 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
 const UpdatePrompt = () => {
   const router = useRouter();
-  // const {data: session} = useSession();
+  const {data: session} = useSession();
   const searchParams = useSearchParams();
   const promptId = searchParams.get('id');
 
@@ -19,9 +20,10 @@ const UpdatePrompt = () => {
 
   useEffect(() => {
     const getPromptDetails = async () => {
-      const res = await fetch(`/api/prompt/${promptId}`);
+      const res = await fetch(`/api/prompts/${promptId}`);
       const data = await res.json();
       setPrompt({
+        userId: session?.user.id,
         prompt: data.prompt,
         tag: data.tag
       });
@@ -38,7 +40,7 @@ const UpdatePrompt = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`/api/prompt/${promptId}`, {
+      const response = await fetch(`/api/prompts/${promptId}`, {
         method: "PATCH",
         body: JSON.stringify({
           prompt: prompt.prompt,
