@@ -1,4 +1,5 @@
 import Prompt from "@models/prompt";
+import User from "@models/user";
 import { connectToDB } from "@utils/database";
 
 export const GET = async (request, { params }) => {
@@ -16,7 +17,11 @@ export const GET = async (request, { params }) => {
 }
 
 export const PATCH = async (request, { params }) => {
-    const { prompt, tag } = await request.json();
+    const { prompt, tag, userId } = await request.json();
+    // const obj = await request.json();
+
+
+    console.log('userId :>> ', userId);
 
     try {
         await connectToDB();
@@ -27,6 +32,20 @@ export const PATCH = async (request, { params }) => {
         if (!existingPrompt) {
             return new Response("Prompt not found", { status: 404 });
         }
+
+        const existingUser = await User.findById(userId);
+
+        if (!existingUser) {
+            return new Response("Prompt not found", { status: 404 });
+        }
+
+        const existingUserIsPromptOwner = JSON.stringify(existingUser._id) === JSON.stringify(existingPrompt.creator);
+
+        if (!existingUserIsPromptOwner) {
+            return new Response("Prompt not found", { status: 404 });
+        }
+
+        console.log('existingUserIsPromptOwner :>> ', existingUserIsPromptOwner);
 
         // Update the prompt with new data
         existingPrompt.prompt = prompt;

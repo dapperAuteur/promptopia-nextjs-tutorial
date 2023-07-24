@@ -23,10 +23,10 @@ const UpdatePrompt = () => {
       const res = await fetch(`/api/prompts/${promptId}`);
       const data = await res.json();
       setPrompt({
-        userId: session?.user.id,
         prompt: data.prompt,
         tag: data.tag
       });
+      
     }
   
     
@@ -43,6 +43,7 @@ const UpdatePrompt = () => {
       const response = await fetch(`/api/prompts/${promptId}`, {
         method: "PATCH",
         body: JSON.stringify({
+          userId: session?.user.id,
           prompt: prompt.prompt,
           tag: prompt.tag,
         }),
@@ -58,7 +59,7 @@ const UpdatePrompt = () => {
   }
   return (
     <Form
-      type='Create'
+      type='Update'
       prompt={prompt}
       setPrompt={setPrompt}
       submitting={submitting}
