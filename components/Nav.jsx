@@ -10,6 +10,7 @@ const Nav = () => {
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [toggleDropdownWords, setToggleDropdownWords] = useState(false);
+  const [toggleDropdownProjects, setToggleDropdownProjects] = useState(false);
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -59,6 +60,37 @@ const Nav = () => {
                   setToggleDropdownWords(false);
                 }}>
                   Random Verbos
+                </Link>
+            </div>
+        )}
+        </div>
+        {/* Projects Button */}
+        <div className='flex relative'>
+          <button className='black_btn flex-center' onClick={() => setToggleDropdownProjects((prev) => !prev)}>
+            Project Lists
+          </button>
+          {
+          toggleDropdownProjects && (
+            <div className='dropdown'>
+              <Link
+                href="/projects"
+                className='dropdown_link'
+                onClick={() => setToggleDropdownProjects(false)}>
+                  Projects
+              </Link>
+              <Link
+                href="/tasks"
+                className='dropdown_link'
+                onClick={() => setToggleDropdownProjects(false)}>
+                  Tasks
+              </Link>
+              <Link
+                href="/ideas"
+                className='dropdown_link'
+                onClick={() => {
+                  setToggleDropdownProjects(false);
+                }}>
+                  Ideas
                 </Link>
             </div>
         )}
