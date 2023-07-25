@@ -70,7 +70,7 @@ const IdeaFeed = () => {
       <form className="relative w-full flex-center">
         <input
           type="text"
-          placeholder="Search for title, tag, and username."
+          placeholder="Search for title, description, tag, and username."
           value={searchText}
           onChange={handleSearchChange}
           required
