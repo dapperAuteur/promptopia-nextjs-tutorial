@@ -22,7 +22,7 @@ export const GET = async (request, { params }) => {
 }
 
 export const PATCH = async (request, {params}) => {
-  const project = await request.json();
+  const {project, userId} = await request.json();
 
   try {
     await connectToDB()
@@ -46,6 +46,18 @@ export const PATCH = async (request, {params}) => {
 
     if (!existingProject) {
       new Response('Project NOT Found', { status: 404 });
+    }
+
+    const existingUser = await User.findById(userId);
+
+    if (!existingUser) {
+        return new Response("Project not found", { status: 404 });
+    }
+
+    const existingUserIsProjectOwner = JSON.stringify(existingUser._id) === JSON.stringify(existingProject.creator);
+
+    if (!existingUserIsProjectOwner) {
+        return new Response("Project not found", { status: 404 });
     }
 
     // console.log('existingProject :>> ', existingProject);

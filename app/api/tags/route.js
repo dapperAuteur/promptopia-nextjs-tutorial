@@ -6,7 +6,7 @@ export const GET = async (request) => {
     await connectToDB();
 
     const tags = await Tag.find({});
-    console.log('tags :>> ', tags);
+    // console.log('tags :>> ', tags);
     return new Response(JSON.stringify(tags), { status: 201 });
   } catch (err) {
     console.log('GET Tags err :>> ', err);

@@ -18,10 +18,8 @@ export const GET = async (request, { params }) => {
 
 export const PATCH = async (request, { params }) => {
     const { prompt, tag, userId } = await request.json();
-    // const obj = await request.json();
 
-
-    console.log('userId :>> ', userId);
+    // console.log('userId :>> ', userId);
 
     try {
         await connectToDB();
@@ -45,7 +43,7 @@ export const PATCH = async (request, { params }) => {
             return new Response("Prompt not found", { status: 404 });
         }
 
-        console.log('existingUserIsPromptOwner :>> ', existingUserIsPromptOwner);
+        // console.log('existingUserIsPromptOwner :>> ', existingUserIsPromptOwner);
 
         // Update the prompt with new data
         existingPrompt.prompt = prompt;
@@ -60,8 +58,35 @@ export const PATCH = async (request, { params }) => {
 };
 
 export const DELETE = async (request, { params }) => {
+    // const { userId } = await request.json();
+    console.log('request :>> ', request);
     try {
         await connectToDB();
+
+        // Find the existing prompt by ID
+        const existingPrompt = await Prompt.findById(params.id);
+
+        console.log('existingPrompt :>> ', existingPrompt);
+
+        if (!existingPrompt) {
+            return new Response("Prompt not found", { status: 404 });
+        }
+
+        // const existingUser = await User.findById(userId);
+
+        // console.log('existingUser :>> ', existingUser);
+
+        // if (!existingUser) {
+        //     return new Response("Prompt not found", { status: 404 });
+        // }
+
+        // const existingUserIsPromptOwner = JSON.stringify(existingUser._id) === JSON.stringify(existingPrompt.creator);
+
+        // console.log('existingUserIsPromptOwner :>> ', existingUserIsPromptOwner);
+
+        // if (!existingUserIsPromptOwner) {
+        //     return new Response("Prompt not found", { status: 404 });
+        // }
 
         // Find the prompt by ID and remove it
         await Prompt.findByIdAndRemove(params.id);

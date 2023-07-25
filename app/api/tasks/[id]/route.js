@@ -1,4 +1,5 @@
 import Task from "@models/task";
+import User from "@models/user";
 import { connectToDB } from "@utils/database";
 
 export const GET = async (request, {params}) => {
@@ -21,7 +22,7 @@ export const GET = async (request, {params}) => {
 }
 
 export const PATCH = async (request, { params }) => {
-  const { task, tag } = await request.json();
+  const { task, tag, userId } = await request.json();
 
   try {
     await connectToDB();
@@ -33,6 +34,18 @@ export const PATCH = async (request, { params }) => {
       return new Response('Task NOT found.', {
         status: 404
       });
+    }
+
+    const existingUser = await User.findById(userId);
+
+    if (!existingUser) {
+        return new Response("Task not found", { status: 404 });
+    }
+
+    const existingUserIsTaskOwner = JSON.stringify(existingUser._id) === JSON.stringify(existingTask.creator);
+
+    if (!existingUserIsTaskOwner) {
+        return new Response("Task not found", { status: 404 });
     }
 
     // Update the task with new data

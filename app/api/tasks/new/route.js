@@ -5,7 +5,7 @@ export const POST = async(request) => {
   // const {userId, task, tag} = await request.json();
   const task = await request.json();
 
-  console.log('task :>> ', task);
+  // console.log('task :>> ', task);
   // console.log('requestJSON :>> ', requestJSON);
   try {
     // Connect to database

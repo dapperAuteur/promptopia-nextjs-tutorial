@@ -1,4 +1,5 @@
 import Idea from "@models/idea";
+import User from "@models/user";
 import { connectToDB } from "@utils/database";
 
 export const GET = async (request, {params}) => {
@@ -22,7 +23,7 @@ export const GET = async (request, {params}) => {
 }
 
 export const PATCH = async (request, { params }) => {
-  const { idea, tag } = await request.json();
+  const { idea, tag, userId } = await request.json();
 
   try {
     await connectToDB();
@@ -31,9 +32,25 @@ export const PATCH = async (request, { params }) => {
     const existingIdea = await Idea.findById(params.id);
 
     if (!existingIdea) {
-      return new Response('Idea NOT found.', {
+      return new Response('0 Idea NOT found.', {
         status: 404
       });
+    }
+
+    // console.log('userId :>> ', userId);
+
+    const existingUser = await User.findById(userId);
+
+    // console.log('existingUser :>> ', existingUser);
+
+    if (!existingUser) {
+        return new Response("Idea not found", { status: 404 });
+    }
+
+    const existingUserIsIdeaOwner = JSON.stringify(existingUser._id) === JSON.stringify(existingIdea.creator);
+
+    if (!existingUserIsIdeaOwner) {
+        return new Response("Idea not found", { status: 404 });
     }
 
     // console.log('0 existingIdea :>> ', existingIdea);

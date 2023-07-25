@@ -7,14 +7,14 @@ export const POST = async (request) => {
   try {
     await connectToDB();
 
-    console.log('createTag :>> ', createTag);
+    // console.log('createTag :>> ', createTag);
 
     const newTag = new Tag({
       title: createTag.title
     });
 
     const createdTag = await newTag.save();
-    console.log('createdTag :>> ', createdTag);
+    // console.log('createdTag :>> ', createdTag);
 
     return new Response(JSON.stringify(createdTag), { status: 201 });
 
