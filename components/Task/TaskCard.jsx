@@ -5,14 +5,14 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
-const IdeaCard = ({idea, handleTagClick, handleEdit, handleDelete}) => {
+const TaskCard = ({task, handleTagClick, handleEdit, handleDelete}) => {
   const { data: session } = useSession();
   const pathName = usePathname();
   
   const [copied, setCopied] = useState("");
   const handleCopy = () => {
-    setCopied(idea.title);
-    navigator.clipboard.writeText(idea.title);
+    setCopied(task.title);
+    navigator.clipboard.writeText(task.title);
     setTimeout(() => setCopied(""), 3000);
   }
 
@@ -21,7 +21,7 @@ const IdeaCard = ({idea, handleTagClick, handleEdit, handleDelete}) => {
       <div className="flex justify-between items-start gap-5">
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
           <Image
-            src={idea.creator?.image}
+            src={task.creator?.image}
             alt="user_image"
             width={40}
             height={40}
@@ -29,17 +29,17 @@ const IdeaCard = ({idea, handleTagClick, handleEdit, handleDelete}) => {
             />
             <div className="flex flex-col">
               <h3 className="font-satoshi font-semibold text-gray-900">
-                {idea.creator.username}
+                {task.creator.username}
               </h3>
               <p className="font-inter text-sm text-gray-500">
-                {idea.creator.email}
+                {task.creator.email}
               </p>
             </div>
         </div>
         <div className="copy_btn" onClick={handleCopy}>
           <Image
-            src={copied === idea.title ? '/assets/icons/tick.svg' : '/assets/icons/copy.svg'}
-            alt={copied === idea.title ? "tick_icon" : "copy_icon"}
+            src={copied === task.title ? '/assets/icons/tick.svg' : '/assets/icons/copy.svg'}
+            alt={copied === task.title ? "tick_icon" : "copy_icon"}
             width={12}
             height={12}
             />
@@ -47,12 +47,12 @@ const IdeaCard = ({idea, handleTagClick, handleEdit, handleDelete}) => {
       </div>
       <p className="my-4 font-satoshi text-sm text-gray-700"
       onClick={handleEdit}>
-        {idea.title}
+        {task.title}
       </p>
       <p className="font-inter text-sm blue_gradient cursor-pointer"
-        onClick={() => handleTagClick && handleTagClick(idea?.tags)}>#{idea?.tags}</p>
+        onClick={() => handleTagClick && handleTagClick(task?.tags)}>#{task?.tags}</p>
         {
-          session?.user.id === idea.creator._id && pathName === '/profile' && (
+          session?.user.id === task.creator._id && pathName === '/profile' && (
             <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
               <p className="font-inter text-sm green_gradient cursor-pointer"
               onClick={handleEdit}>
@@ -70,4 +70,4 @@ const IdeaCard = ({idea, handleTagClick, handleEdit, handleDelete}) => {
 
 }
 
-export default IdeaCard
+export default TaskCard

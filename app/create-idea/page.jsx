@@ -1,11 +1,11 @@
 'use client'
-import FormIdea from '@components/FormIdea'
+import IdeaForm from '@components/Idea/IdeaForm'
 import React from 'react'
 
 function page() {
   return (
     <div>
-      <FormIdea/>
+      <IdeaForm/>
     </div>
   )
 }
