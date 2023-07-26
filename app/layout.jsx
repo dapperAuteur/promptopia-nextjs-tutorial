@@ -1,9 +1,10 @@
-// import Nav from '@components/Nav';
-// import Provider from '@components/Provider';
-// import '@styles/globals.css';
-import Nav from './../components/Nav'
-import Provider from './../components/Provider'
-import './../styles/globals.css'
+import Nav from '@components/Nav';
+import Provider from '@components/Provider';
+import '@styles/globals.css';
+import Head from 'next/head';
+// import Nav from './../components/Nav'
+// import Provider from './../components/Provider'
+// import './../styles/globals.css'
 
 export const metadata = {
   title: "Promptopia",
@@ -13,6 +14,9 @@ export const metadata = {
 const Rootlayout = ({children}) => {
   return (
     <html lang="en">
+      <Head>
+        <script src='/js/aryelEmbed.js' defer></script>
+      </Head>
       <body>
         <Provider>
           <div className='main'>
@@ -22,6 +26,8 @@ const Rootlayout = ({children}) => {
             <Nav/>
             {children}
           </main>
+          <aryel-embed
+      campaign="63aaac153a8b4d43340287ea"></aryel-embed>
         </Provider>
       </body>
     </html>
