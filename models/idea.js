@@ -18,6 +18,10 @@ const IdeaSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Tag'
   }],
+  privateObj: {
+    type: Boolean,
+    default: false
+  },
   assignedDate: {
     type: Date
   },

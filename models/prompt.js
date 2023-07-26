@@ -13,6 +13,10 @@ const PromptSchema = new Schema({
     type: String,
     required: [true, 'Tag is required.'],
   },
+  privateObj: {
+    type: Boolean,
+    default: false
+  },
   tags: [{
     type: Schema.Types.ObjectId,
     ref: 'Tag',

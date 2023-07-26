@@ -37,6 +37,10 @@ const TaskSchema = Schema({
     required: [true, 'Points is required. The default is 1.'],
     default: 1,
   },
+  privateObj: {
+    type: Boolean,
+    default: false
+  },
   assignedDate: {
     type: Date
   },
