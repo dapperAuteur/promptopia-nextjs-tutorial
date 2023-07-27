@@ -1,9 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const IdeaForm = ({type, idea, setIdea, submitting, handleSubmit}) => {
 
-  const [tag, setTag] = useState('')
+  // console.log('idea :>> ', idea);
+  const [tags, setTags] = useState([]);
+  const [allTags, setAllTags] = useState([]);
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      const response = await fetch('/api/tags');
+      const data = await response.json();
+
+      setAllTags(data);
+    }
+    fetchTags();
+  
+    // return () => {
+    //   second
+    // }
+  }, []);
+
+  // console.log('allTags :>> ', allTags);
+  
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
@@ -75,8 +94,15 @@ const IdeaForm = ({type, idea, setIdea, submitting, handleSubmit}) => {
               id='ideaStatus'
               form='createIdea'
               size={5}
+              value={idea.ideaStatus}
+              onChange={
+                (e) => setIdea({
+                  ...idea,
+                  ideaStatus: e.target.value
+                })
+              }
               >
-              <option selected value='Idea'>Idea</option>
+              <option value='Idea'>Idea</option>
               <option value='Task'>Task</option>
               <option value='Mini-Project'>Mini-Project</option>
               <option value='Project'>Project</option>
@@ -85,46 +111,37 @@ const IdeaForm = ({type, idea, setIdea, submitting, handleSubmit}) => {
           </div>
           <div>
             <label htmlFor="createTags" className='pr-5'>Tag(s): (Multiple Tags May Be Chosen)</label>
-            <select
-              name='tags'
-              id='ags'
-              form='createIdea'
-              // size={5}
-              // multiple
-              >
-                <option value='idea'>Idea</option>
-                <option value='BetterBudClub'>BetterBudClub</option>
-                <option value='BDI3 LLC'>BDI3 LLC</option>
-                <option value='Centenarian.Fun'>Centenarian.Fun</option>
-                <option value='iWriteCode'>iWriteCode</option>
-                <option value='AwesomeWebStore.com'>AwesomeWebStore.com</option>
-                <option value='6in602'>6in602</option>
-                <option value='Better Bike'>Better Bike</option>
-                <option value='Better Treat'>Better Treat</option>
-                <option value='Better Vices Club'>Better Vices Club</option>
-                <option value='Everythings.Forsale'>Everythings.Forsale</option>
-                <option value='Free Firearms LLC'>Free Firearms LLC</option>
-                <option value='Hip-Hop Axiom'>Hip-Hop Axiom</option>
-                <option value='Sex With The Lights On'>Sex With The Lights On</option>
-                <option value='Smile Club'>Smile Club</option>
-                <option value='WitUS'>WitUS</option>
-              </select>
+            {allTags.map(t => (
+              <div key={t._id}>
+                <input
+                  type='checkbox'
+                  id='tags'
+                  name='tags'
+                  value={t.title}
+                  onChange={(e) => setIdea({
+                    ...idea,
+                    tags: e.target.value
+                  })}
+                  />
+                  <label htmlFor={t._id}>
+                    {t.title}
+                  </label>
+                </div>
+            ))}
           </div>
           <div>
-            <label htmlFor='points' className='pr-5'>Points</label>
+            <label htmlFor='privateObj' className='pr-5'>Private</label>
             <input
-            value={idea?.points || 1}
+            value={idea?.privateObj || true}
               onChange={
                 (e) => setIdea({
                   ...idea,
-                  points: parseInt(e?.target?.value || 0),
+                  privateObj: e?.target?.value || true,
                 })
               }
-              type=''
-              min={1}
-              max={10000}
-              name='points'
-              id='points'
+              type='boolean'
+              name='privateObj'
+              id='privateObj'
               required
               />
           </div>

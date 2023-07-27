@@ -20,7 +20,7 @@ const IdeaSchema = new Schema({
   }],
   privateObj: {
     type: Boolean,
-    default: false
+    default: true
   },
   assignedDate: {
     type: Date
