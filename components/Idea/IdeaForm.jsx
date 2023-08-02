@@ -7,6 +7,22 @@ const IdeaForm = ({type, idea, setIdea, submitting, handleSubmit}) => {
   const [tags, setTags] = useState([]);
   const [allTags, setAllTags] = useState([]);
 
+  const handleTagChange = e => {
+    const selectedTag = e.target.value;
+    setIdea((prevState) => {
+      const newTags = [...prevState.tags];
+      console.log('b4 newTags :>> ', newTags);
+      const index = newTags.indexOf(selectedTag);
+      if (index !== -1) {
+        newTags.splice(index, 1);
+      } else {
+        newTags.push(selectedTag)
+      }
+      console.log('after newTags :>> ', newTags);
+      return {...prevState, tags: newTags}
+    })
+  }
+
   useEffect(() => {
     const fetchTags = async () => {
       const response = await fetch('/api/tags');
@@ -118,10 +134,7 @@ const IdeaForm = ({type, idea, setIdea, submitting, handleSubmit}) => {
                   id='tags'
                   name='tags'
                   value={t.title}
-                  onChange={(e) => setIdea({
-                    ...idea,
-                    tags: e.target.value
-                  })}
+                  onChange={handleTagChange}
                   />
                   <label htmlFor={t._id}>
                     {t.title}
