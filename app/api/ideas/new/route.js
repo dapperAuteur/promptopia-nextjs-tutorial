@@ -11,7 +11,7 @@ export const POST = async(request) => {
       creator: idea.creator,
       title: idea.title,
       description: idea.description,
-      tag: idea.tag
+      tags: idea.tags
     });
 
     await newIdea.save();
