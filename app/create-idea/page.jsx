@@ -19,6 +19,7 @@ const CreateIdea = () => {
     console.log('page createIdea() idea :>> ', idea);
 
     try {
+      console.log('idea.tags :>> ', idea.tags);
       const response = await fetch("/api/ideas/new", {
         method: "POST",
         body: JSON.stringify({
