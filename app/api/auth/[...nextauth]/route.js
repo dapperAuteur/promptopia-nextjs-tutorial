@@ -1,7 +1,7 @@
 import NextAuth from "next-auth/next"; // tutorial imports from "next-auth" and not "next-auth/next", is this an issue?
 import GoogleProvider from "next-auth/providers/google"
 import { connectToDB } from "./../../../../utils/database";
-import User from "@models/user";
+import User from "./../../../../models/user";
 
 const handler = NextAuth({
   providers: [

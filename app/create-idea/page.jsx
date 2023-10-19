@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import IdeaForm from '@components/Idea/IdeaForm'
+import IdeaForm from './../../components/Idea/IdeaForm'
 
 const CreateIdea = () => {
 
