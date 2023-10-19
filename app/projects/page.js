@@ -1,4 +1,4 @@
-import ProjectFeed from "@components/Project/ProjectFeed";
+import ProjectFeed from "./../../components/Project/ProjectFeed";
 
 const ProjectHome = () => {
   return (
