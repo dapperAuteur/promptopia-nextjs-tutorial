@@ -30,7 +30,7 @@ const MyProfile = () => {
     const hasConfirmed = confirm("Are you sure you want to delete this prompt?");
 
     if (hasConfirmed) {
-      console.log('session :>> ', session);
+      // console.log('session :>> ', session);
       try {
         await fetch(`/api/prompts/${prompt._id.toString()}`, {
           method: "DELETE",

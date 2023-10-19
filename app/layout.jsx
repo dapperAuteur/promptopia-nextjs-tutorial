@@ -1,7 +1,7 @@
-import Nav from '@components/Nav';
+import Nav from './../components/Nav';
 import { Analytics } from '@vercel/analytics/react'
-import Provider from '@components/Provider';
-import '@styles/globals.css';
+import Provider from './../components/Provider';
+import './../styles/globals.css';
 
 export const metadata = {
   title: "Promptopia",

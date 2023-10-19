@@ -37,7 +37,7 @@ export default function RandomAffix() {
     return <div>Loading...</div>
   }
   if (!data) {
-    console.log("there's !data");
+    // console.log("there's !data");
     return null;
   }
   // console.log('data :>> ', data);

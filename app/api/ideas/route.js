@@ -35,7 +35,7 @@ export const GET = async (request) => {
               }
             }
           }
-          console.log('arr1[i] :>> ', arr1[i]);
+          // console.log('arr1[i] :>> ', arr1[i]);
         }
         // console.log('arr1 :>> ', arr1);
       }

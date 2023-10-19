@@ -11,14 +11,14 @@ const IdeaForm = ({type, idea, setIdea, submitting, handleSubmit}) => {
     const selectedTag = e.target.value;
     setIdea((prevState) => {
       const newTags = [...prevState.tags];
-      console.log('b4 newTags :>> ', newTags);
+      // console.log('b4 newTags :>> ', newTags);
       const index = newTags.indexOf(selectedTag);
       if (index !== -1) {
         newTags.splice(index, 1);
       } else {
         newTags.push(selectedTag)
       }
-      console.log('after newTags :>> ', newTags);
+      // console.log('after newTags :>> ', newTags);
       return {...prevState, tags: newTags}
     })
   }

@@ -16,10 +16,10 @@ const CreateIdea = () => {
   const createIdea = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log('page createIdea() idea :>> ', idea);
+    // console.log('page createIdea() idea :>> ', idea);
 
     try {
-      console.log('idea.tags :>> ', idea.tags);
+      // console.log('idea.tags :>> ', idea.tags);
       const response = await fetch("/api/ideas/new", {
         method: "POST",
         body: JSON.stringify({

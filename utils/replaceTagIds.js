@@ -18,7 +18,7 @@ function replaceTagIds(tags, ideas) {
     // console.log('idea :>> ', idea);
     const tags = idea.tags.map(tagId => {
       // console.log('tagId :>> ', tagId);
-      console.log('tagMap :>> ', tagMap);
+      // console.log('tagMap :>> ', tagMap);
       return tagMap.get(tagId);
     })
     // console.log('tags :>> ', tags);

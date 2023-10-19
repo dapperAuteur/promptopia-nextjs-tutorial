@@ -1,5 +1,7 @@
 import { connectToDB } from "./../../../utils/database";
+import { generateEmailBody, sendEmail } from "./../../../lib/nodemailer"
 import { randomAffixesVerbosWords } from "./../graphql/word-list";
+import { NextResponse } from "next/server";
 
 const maxDuration = 10;
 const dynamic = "force-dynamic";
@@ -23,18 +25,18 @@ export async function GET() {
     const verbos = lists.findRandomVerbos.verbos;
     const words = lists.findRandomWords.words;
 
-    console.log('affixes :>> ', affixes);
-    console.log('verbos :>> ', verbos);
-    console.log('words :>> ', words);
-
     // Generate Email Body
     // send one email per list
     const emailContent = await generateEmailBody(affixes, words, verbos)
 
     // Send Email
-    await sendEmail(emailContent, userEmail);
+    await sendEmail(emailContent, process.env.EMAIL_TO_ADDRESS);
+    // console.log('sendEmail called');
 
-    return lists;
+    return NextResponse.json({
+      message: "Ok",
+      data: lists,
+    });
     
   } catch (err) {
     console.log('GET() err :>> ', err);

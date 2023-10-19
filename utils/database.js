@@ -16,7 +16,7 @@ export const connectToDB = async () => {
       useUnifiedTopology: true,
     });
     isConnected = true;
-    console.log('isConnected :>> ', isConnected);
+    // console.log('isConnected :>> ', isConnected);
   } catch (err) {
     console.log('MONGODB NOT Connected! err :>> ', err);
   }

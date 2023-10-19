@@ -11,7 +11,7 @@ export async function getRandomAffixes() {
 
 export async function getAffixes() {
   const a = await getRandomAffixes();
-  console.log('a :>> ', a);
+  // console.log('a :>> ', a);
   let {data} = a;
   let {findRandomAffixes} = data;
   let {affixes} = findRandomAffixes;
@@ -25,7 +25,7 @@ import React from 'react'
 
 function affixes() {
   getAffixes();
-  console.log("sample");
+  // console.log("sample");
   // let b = getAffixes();
   // console.log('b :>> ', b);
   return (
