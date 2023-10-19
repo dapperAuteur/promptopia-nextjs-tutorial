@@ -7,3 +7,11 @@ export async function getRandomAffixes() {
   return data;
 
 }
+
+export async function randomAffixesVerbosWords() {
+  const res = await fetch('https://code-word-list.witus.online/api/graphql?query=%7B%0A++findRandomAffixes%28limit%3A+3%29+%7B%0A++++count%0A++++affixes%7B%0A++++++morpheme%0A++++++meaning%0A++++++example%0A++++++affix_type%0A++++%7D%0A++%7D%0A++findRandomVerbos%28limit%3A+3%29+%7B%0A++++count%0A++++verbos%7B%0A++++++spanish%0A++++++english%0A++++++reflexive%0A++++++irregular%0A++++++categoria_de_irregular%0A++++++cambiar_de_irregular%0A++++++terminacion%0A++++++grupo%0A++++%7D%0A++%7D%0A++findRandomWords%28limit%3A+3%29+%7B%0A++++count%0A++++words%7B%0A++++++word%0A++++++meaning%0A++++++definition%0A++++%7D%0A++%7D%0A%7D');
+
+  const data = await res.json();
+  console.log('data :>> ', data);
+  return data;
+}
