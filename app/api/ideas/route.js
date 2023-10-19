@@ -1,6 +1,6 @@
-import Idea from "@models/idea";
-import Tag from "@models/tag";
-import { connectToDB } from "@utils/database";
+import Idea from "./../../../models/idea";
+import Tag from "./../../../models/tag";
+import { connectToDB } from "./../../../utils/database";
 
 export const GET = async (request) => {
   try {

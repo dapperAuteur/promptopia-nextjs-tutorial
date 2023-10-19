@@ -1,5 +1,5 @@
-import Idea from "@models/idea";
-import { connectToDB } from "@utils/database";
+import Idea from "./../../../../models/idea";
+import { connectToDB } from "./../../../../utils/database";
 
 export const POST = async(request) => {
   const idea = await request.json();
