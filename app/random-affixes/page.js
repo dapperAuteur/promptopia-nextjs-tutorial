@@ -1,7 +1,7 @@
 "use client"
 
 import useSWR from 'swr';
-import { Array2String } from "./../../utils/wordListFunctions";
+import { Array2String } from "../../utils/wordListFunctions";
 import { fetcher } from '../../utils/serverCall';
 // import utilStyles from './../../styles/utils.module.css';
 
