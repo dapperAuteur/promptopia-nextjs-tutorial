@@ -32,9 +32,6 @@ const IdeaForm = ({type, idea, setIdea, submitting, handleSubmit}) => {
     }
     fetchTags();
   
-    // return () => {
-    //   second
-    // }
   }, []);
 
   // console.log('allTags :>> ', allTags);
@@ -133,7 +130,7 @@ const IdeaForm = ({type, idea, setIdea, submitting, handleSubmit}) => {
                   type='checkbox'
                   id='tags'
                   name='tags'
-                  value={t.title}
+                  value={t._id}
                   onChange={handleTagChange}
                   />
                   <label htmlFor={t._id}>
