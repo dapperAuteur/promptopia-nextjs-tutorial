@@ -1,6 +1,6 @@
-import Task from "@models/task";
-import User from "@models/user";
-import { connectToDB } from "@utils/database";
+import Task from "./../../../models/task";
+import User from "./../../../models/user";
+import { connectToDB } from "./../../../utils/database";
 
 export const GET = async (request) => {
   try {

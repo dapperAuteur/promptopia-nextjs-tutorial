@@ -1,4 +1,4 @@
-import IdeaFeed from "@components/Idea/IdeaFeed";
+import IdeaFeed from "./../../components/Idea/IdeaFeed";
 
 const IdeaHome = () => {
   return (

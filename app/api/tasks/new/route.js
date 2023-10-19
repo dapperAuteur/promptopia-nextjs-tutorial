@@ -1,5 +1,5 @@
-import Task from "@models/task";
-import { connectToDB } from "@utils/database";
+import Task from "./../../../../models/task";
+import { connectToDB } from "./../../../../utils/database";
 
 export const POST = async(request) => {
   // const {userId, task, tag} = await request.json();

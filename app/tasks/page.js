@@ -1,4 +1,4 @@
-import TaskFeed from "@components/Task/TaskFeed";
+import TaskFeed from "./../../components/Task/TaskFeed";
 
 const TaskHome = () => {
   return (
