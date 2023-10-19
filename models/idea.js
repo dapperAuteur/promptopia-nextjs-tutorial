@@ -16,8 +16,14 @@ const IdeaSchema = new Schema({
   },
   tags: [{
     type: Schema.Types.ObjectId,
-    ref: 'Tag'
+    ref: 'Tag',
+    required: false
   }],
+  // tag: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Tag',
+  //   required: false
+  // }],
   privateObj: {
     type: Boolean,
     default: true
