@@ -31,7 +31,7 @@ export async function GET() {
 
     // Send Email
     await sendEmail(emailContent, process.env.EMAIL_TO_ADDRESS);
-    // console.log('sendEmail called');
+    console.log('sendEmail called: ', ' >> process.env.EMAIL_TO_ADDRESS >> ', process.env.EMAIL_TO_ADDRESS, ' emailContent: >> ', emailContent);
 
     return NextResponse.json({
       message: "Ok",
