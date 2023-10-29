@@ -1,4 +1,3 @@
-import { connectToDB } from "./../../../utils/database";
 import { generateEmailBody, sendEmail } from "./../../../lib/nodemailer"
 import { randomAffixesVerbosWords } from "./../graphql/word-list";
 import { NextResponse } from "next/server";
@@ -10,8 +9,6 @@ const revalidate = 0;
 export async function GET() {
   
   try {
-
-    connectToDB();
 
     const randomAVW = await randomAffixesVerbosWords();
     // console.log('CRON randomAVW :>> ', randomAVW);
@@ -31,7 +28,7 @@ export async function GET() {
 
     // Send Email
     await sendEmail(emailContent, process.env.EMAIL_TO_ADDRESS);
-    // console.log('sendEmail called: ', ' >> process.env.EMAIL_TO_ADDRESS >> ', process.env.EMAIL_TO_ADDRESS, ' emailContent: >> ', emailContent);
+    // console.log('\n *** \n sendEmail called: \n *** \n emailContent.subject', emailContent.subject);
 
     return NextResponse.json({
       message: "Ok",
