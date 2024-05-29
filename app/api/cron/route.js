@@ -1,5 +1,5 @@
 import { generateEmailBody, sendEmail } from "./../../../lib/nodemailer"
-import { randomAffixesVerbosWords } from "./../graphql/word-list";
+import { randomAffixesVerbosWords, randomAffixesFrasesVerbosWords } from "./../graphql/word-list";
 import { NextResponse } from "next/server";
 
 const maxDuration = 10;
@@ -10,21 +10,27 @@ export async function GET() {
   
   try {
 
-    const randomAVW = await randomAffixesVerbosWords();
+    // const randomAVW = await randomAffixesVerbosWords();
     // console.log('CRON randomAVW :>> ', randomAVW);
+    const randomAFVW = await randomAffixesFrasesVerbosWords();
 
-    if(!randomAVW) throw new Error("No Words.");
+    // if(!randomAVW) throw new Error("No Words.");
+    if(!randomAFVW) throw new Error("No Words.");
 
-    const lists = randomAVW.data;
+    // const lists = randomAVW.data;
     // console.log('lists :>> ', lists);
+    const lists = randomAFVW.data;
+    console.log('lists :>> ', lists);
 
     const affixes = lists.findRandomAffixes.affixes;
+    const frases = lists.findRandomAffixes.frases;
     const verbos = lists.findRandomVerbos.verbos;
     const words = lists.findRandomWords.words;
 
     // Generate Email Body
     // send one email per list
-    const emailContent = await generateEmailBody(affixes, words, verbos)
+    // const emailContent = await generateEmailBody(affixes, words, verbos);
+    const emailContent = await generateEmailBody(affixes, frases, words, verbos);
 
     // Send Email
     await sendEmail(emailContent, process.env.EMAIL_TO_ADDRESS);
