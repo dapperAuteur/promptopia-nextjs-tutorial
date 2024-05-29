@@ -54,6 +54,12 @@ const Nav = () => {
                   Random Four Letter Words
               </Link>
               <Link
+                href="/random-frases"
+                className='dropdown_link'
+                onClick={() => setToggleDropdownWords(false)}>
+                  Random Frases
+                </Link>
+              <Link
                 href="/random-verbos"
                 className='dropdown_link'
                 onClick={() => {
