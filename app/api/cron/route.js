@@ -25,12 +25,12 @@ export async function GET() {
     const affixes = lists.findRandomAffixes.affixes;
     const frases = lists.findRandomAffixes.frases;
     const verbos = lists.findRandomVerbos.verbos;
-    const words = lists.findRandomWords.words;
+    // const words = lists.findRandomWords.words;
 
     // Generate Email Body
     // send one email per list
     // const emailContent = await generateEmailBody(affixes, words, verbos);
-    const emailContent = await generateEmailBody(affixes, frases, words, verbos);
+    const emailContent = await generateEmailBody(affixes, frases, /* words, */ verbos);
 
     // Send Email
     await sendEmail(emailContent, process.env.EMAIL_TO_ADDRESS);
